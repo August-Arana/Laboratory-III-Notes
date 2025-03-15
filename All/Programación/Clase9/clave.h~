@@ -1,0 +1,11 @@
+#ifndef _CLAVE
+#define _CLAVE
+#include <sys/ipc.h>
+
+#define CLAVE_BASE 33
+
+key_t creo_clave();
+
+
+
+#endif

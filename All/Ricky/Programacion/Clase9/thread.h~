@@ -1,0 +1,6 @@
+#ifndef _THREADPRIMOS
+#define _THREADPRIMOS
+
+void *funcionThread(void *parametro);
+
+#endif

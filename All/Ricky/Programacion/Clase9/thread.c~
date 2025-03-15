@@ -1,0 +1,45 @@
+#include <pthread.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <global.h>
+#include <def.h>
+#include <unistd.h>
+#include <funciones.h>
+
+
+void *funcionThread (void *parametro){
+
+    int i;
+    printf("Hijo\n");
+    for(i=0; i<CANTIDAD; i++){
+        pthread_mutex_lock (&mutex);
+        printf("Soy el hijo y tengo el mutex\n");
+        sleep (1);
+        pthread_mutex_unlock (&mutex);
+        sleep(1);
+    }
+    printf("Soy el hijo y espero 10seg\n");
+    sleep(10);
+    printf("Hijo : Termino\n");
+    pthread_exit ((void *)"Listo");
+}
+
+void *funcionPrimosThread (void *parametro){
+
+	int c=0,c2=0,res=0,nc=0, total=0;
+
+	int* ptr = (int*) parametro; //recibo el parametro y lo casteo como int *;	
+
+	int n= *ptr; //en n cargo el contenido apuntado por *ptr.
+
+
+	printf("THREAD: Voy a calcular los %d numeros primos y los sumo\n",n);
+
+	total = funcionPrimos(n);
+
+	printf("THREAD: %d -> El total es %d\n", n, total);
+	
+	*ptr = total;
+	pthread_exit ((void*)0);
+}

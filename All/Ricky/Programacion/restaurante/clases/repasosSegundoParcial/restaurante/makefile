@@ -1,0 +1,18 @@
+#mi makefile
+
+CC = gcc
+CFLAGS = -pedantic-errors -O3 -std=gnu89 -lpthread
+PHEADER = -I./
+MISC1 = main.c funciones.c archivo.c claves.c semaforos.c memoria.c cola.c
+MISC2 = main1.c funciones.c archivo.c claves.c semaforos.c memoria.c cola.c meseroThread.c
+
+all: clean programa1 programa2
+
+programa1: main.c funciones.c archivo.c claves.c semaforos.c memoria.c cola.c funciones.h archivo.h claves.h semaforos.h memoria.h cola.h def.h global.h
+	$(CC) -o panelEjecutable $(MISC1) $(CFLAGS) $(PHEADER)
+
+programa2: main1.c funciones.c archivo.c claves.c semaforos.c memoria.c cola.c meseroThread.c funciones.h archivo.h claves.h semaforos.h memoria.h cola.h def.h global.h meseroThread.h
+	$(CC) -o meseroEjecutable $(MISC2) $(CFLAGS) $(PHEADER)
+	
+clean: 
+	rm -rf *.o programa1 programa2
