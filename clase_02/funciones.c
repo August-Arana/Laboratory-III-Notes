@@ -6,10 +6,13 @@
 void voMostrar(int *num){
 
     printf("\nvoMostrar\n");
-    *num = 55; //Si, se esta pasando por referencia, pero porque es una variable dinamica
+    *num = 55; 
     printf("\nMuestro numero que es valor de la direcion %d", num);
     printf("\nMuestro valor, valor en hexa y direccion: %d %02x, %02x", *num, *num, &num);
     printf("\nFin voMostrar\n");
-    // %02x muestra valores en hexa
-    //
+}
+
+int inNumeroAleatorio(int m, int n){
+    srand(time(0));
+    return rand() % (n-m+1) + m;
 }

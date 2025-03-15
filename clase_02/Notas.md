@@ -21,26 +21,17 @@ Aquí se focalizará en la fase 3: cuando el programa se ejecuta, se sitúa en l
 
 Se puede pensar en un proceso como una porción de un programa en ejecución, o todo el
 programa.
-Los procesos son tareas separadas unas de otras con sus propios derechos y
-responsabilidades, **hacen uso de la CPU del sistema para realizar sus instrucciones**
-
-, de la
-memoria para almacenarse en él y a sus datos, además de usar ficheros y hasta los
-dispositivos conectados.
+Los procesos son tareas separadas unas de otras con sus propios derechos y responsabilidades, **hacen uso de la CPU del sistema para realizar sus instrucciones** , de la memoria para almacenarse en él y a sus datos, además de usar ficheros y hasta los dispositivos conectados.
 Por lo tanto, un proceso necesita recursos para llevar a cabo su tarea. Estos son:
 •Tiempo de CPU.
 •Memoria.
 •Datos.
 •Archivos y dispositivos de E/S.
 
-Estos recursos se otorgan al proceso en el momento en que se crea, o bien se le asignan
-durante su ejecución.
+Estos recursos se otorgan al proceso en el momento en que se crea, o bien se le asignan durante su ejecución.
 
 \_\_
-Se puede decir que un proceso es la unidad de trabajo de un sistema y el “sistema” consiste
-en una colección de procesos.
-Existen procesos que ejecutan el código del sistema operativo, y procesos de usuario que
-ejecutan código de algún usuario.
+Se puede decir que un proceso es la unidad de trabajo de un sistema y el “sistema” consiste en una colección de procesos. Existen procesos que ejecutan el código del sistema operativo, y procesos de usuario que ejecutan código de algún usuario.
 
 PERO
 Los procesos son todos los tipos de tarea que solemos tener, que solemover, trabajar.
@@ -87,28 +78,22 @@ de los estados:
 •Bloqueado (waiting, en espera): proceso esperando a que ocurra un suceso
 (ejemplo: terminación de E/S o recepción de una señal).
 •Preparado (ready, listo): esperando que se le asigne a un procesador.
-•Terminado (terminated): finalizó su ejecución, por tanto no ejecuta más
-instrucciones y el Sistema Operativo (SO) le retirará los recursos que consume.
+•Terminado (terminated): finalizó su ejecución, por tanto no ejecuta más instrucciones y el Sistema Operativo (SO) le retirará los recursos que consume.
 
 bloqueado -> ctrl-z
 
 ## Proceso: características
 
-Un programa puede ejecutarse más de una vez, generándose más de una instancia del
-mismo programa. Un proceso incluye no sólo el programa que ejecuta, sino toda la
-información necesaria para diferenciar una ejecución del programa de otra.
-Con cada ejecución, el SO genera distintos identificadores a cada proceso:
+Un programa puede ejecutarse más de una vez, generándose más de una instancia del mismo programa. Un proceso incluye no sólo el programa que ejecuta, sino toda la información necesaria para diferenciar una ejecución del programa de otra. Con cada ejecución, el SO genera distintos identificadores a cada proceso:
 •PID (Process ID): número de referencia único que tiene cada proceso que se inicia.
 •UID, GID (User ID, Group ID): usuario y grupo al que pertenece el proceso. Estas
 determinan los derechos del proceso a acceder a los recursos del sistema y ficheros.
-•
-PPID (Parent Process ID): PID del proceso padre.
+• PPID (Parent Process ID): PID del proceso padre.
 El contexto de un proceso es su estado, definido por:
 •Su código.
 •Los valores de sus variables de usuario globales y de sus estructuras de datos.
 •El valor de los registros de la CPU.
-•Los valores almacenados en su entrada de la tabla de procesos y en su área de
-usuario.
+•Los valores almacenados en su entrada de la tabla de procesos y en su área de usuario.
 Y el contenido de sus pilas (stacks) de usuario y kernel.
 
 ## Procesos, comandos
@@ -199,8 +184,7 @@ NUNCA PONER #INCLUDE EN LOS .H**
 #include <time.h>
 #include <string.h>
 ```
-
-Solo si es necesario por un tipo de dato que no tenga. Hacerlo es motivo de reprobar un examen
+obs: Solo si es necesario por un tipo de dato que no tenga. Hacerlo es motivo de reprobar un examen
 
 ```c
 #define CLAVE_BASE 33
