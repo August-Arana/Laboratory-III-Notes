@@ -1,13 +1,13 @@
 # Notas clase 2
 
-Simplemente recordar que lo que decie los apuntes no es siempre tan correcto
+Simplemente recordar que lo que dicen los apuntes no es siempre es lo correcto
 
 Lo que vas a tener que hacer es agarrar clase por clase y desgrabar todo lo que el profe dice y hace de "diferente" con los apuntes.
 
 Hoy vemos procesos
 A partir de esta clase vamos a trabajar con mas de un proceso. Nuevamente, recordar que hay cosas que no son correctas a criterio del profesor y se tomara como valido lo que el mencione a lo largo de las clases.
 
-Ejemplo, int main tiene que tener parametros.
+**Ejemplo, int main tiene que tener parametros.**
 
 ### Fases de un programa
 
@@ -19,24 +19,23 @@ Aquí se focalizará en la fase 3: cuando el programa se ejecuta, se sitúa en l
 
 ### Definicion y recursos
 
-Se puede pensar en un proceso como una porción de un programa en ejecución, o todo el
-programa.
+Se puede pensar en un proceso como una porción de un programa en ejecución, o todo el programa.
 Los procesos son tareas separadas unas de otras con sus propios derechos y responsabilidades, **hacen uso de la CPU del sistema para realizar sus instrucciones** , de la memoria para almacenarse en él y a sus datos, además de usar ficheros y hasta los dispositivos conectados.
 Por lo tanto, un proceso necesita recursos para llevar a cabo su tarea. Estos son:
-•Tiempo de CPU.
-•Memoria.
-•Datos.
-•Archivos y dispositivos de E/S.
+    •Tiempo de CPU.
+    •Memoria.
+    •Datos.
+    •Archivos y dispositivos de E/S.
 
 Estos recursos se otorgan al proceso en el momento en que se crea, o bien se le asignan durante su ejecución.
 
 \_\_
-Se puede decir que un proceso es la unidad de trabajo de un sistema y el “sistema” consiste en una colección de procesos. Existen procesos que ejecutan el código del sistema operativo, y procesos de usuario que ejecutan código de algún usuario.
+Se puede decir que un proceso es *la unidad de trabajo de un sistema* y el “sistema” consiste en una colección de procesos. Existen procesos que ejecutan el código del sistema operativo, y procesos de usuario que ejecutan código de algún usuario.
 
 PERO
-Los procesos son todos los tipos de tarea que solemos tener, que solemover, trabajar.
+Los procesos son todos los tipos de tarea que solemos tener, que solemos trabajar.
 
-#### Seccion de videojuegos, el profesor pregunta y vemos el gorilas, tipo un "Worms world party" pero retro
+#### Seccion de videojuegos, el profesor pregunta y vemos el gorilas, tipo un "Worms world party"
 
 Este es un juego opr turnos, pero la realidad es que estamos corriendo _un solo proceso_ Ya que el ejecutable se corrio una unica vez.
 
@@ -46,7 +45,7 @@ Luego de esto, el profesor menciona que es probable que haya dos threads.
 
 imaginemos que adentro de ese proceso hay subprocesos y por mas que estos existan
 
-** Comentario de juego de tanques con dos procesos que se comunican entre ellos **
+**Comentario de juego de tanques con dos procesos que se comunican entre ellos**
 
 Ejemplo de conter, uno contra otro, los dis disparan al mismo tiempo. Ambos jugadores mueren?
 
@@ -85,16 +84,15 @@ bloqueado -> ctrl-z
 ## Proceso: características
 
 Un programa puede ejecutarse más de una vez, generándose más de una instancia del mismo programa. Un proceso incluye no sólo el programa que ejecuta, sino toda la información necesaria para diferenciar una ejecución del programa de otra. Con cada ejecución, el SO genera distintos identificadores a cada proceso:
-•PID (Process ID): número de referencia único que tiene cada proceso que se inicia.
-•UID, GID (User ID, Group ID): usuario y grupo al que pertenece el proceso. Estas
-determinan los derechos del proceso a acceder a los recursos del sistema y ficheros.
-• PPID (Parent Process ID): PID del proceso padre.
+    **•PID** (Process ID): número de referencia único que tiene cada proceso que se inicia.
+    **•UID**, GID (User ID, Group ID): usuario y grupo al que pertenece el proceso. Estas determinan los derechos del proceso a acceder a los recursos del sistema y ficheros.
+    **•PPID** (Parent Process ID): PID del proceso padre.
+
 El contexto de un proceso es su estado, definido por:
-•Su código.
-•Los valores de sus variables de usuario globales y de sus estructuras de datos.
-•El valor de los registros de la CPU.
-•Los valores almacenados en su entrada de la tabla de procesos y en su área de usuario.
-Y el contenido de sus pilas (stacks) de usuario y kernel.
+    •Su código.
+    •Los valores de sus variables de usuario globales y de sus estructuras de datos.
+    •El valor de los registros de la CPU.
+    •Los valores almacenados en su entrada de la tabla de procesos y en su área de usuario. Y el contenido de sus pilas (stacks) de usuario y kernel.
 
 ## Procesos, comandos
 
@@ -118,7 +116,7 @@ nautilus . &
 
 Fin primer apunte.
 
-Segundo apunte
+# Segundo apunte
 
 ## Librerias, pseudo librerias y makefile
 
@@ -136,14 +134,11 @@ Todo nace y parte de C.
 
 ### Librerías
 
-Las librerías son un grupo de archivos que tienen una funcionalidad pre-construida, y que
-pueden ser usadas por cualquier ejecutable. Las librerías contienen en su interior variables
-y funciones.
+Las librerías son un grupo de archivos que tienen una funcionalidad pre-construida, y que pueden ser usadas por cualquier ejecutable. Las librerías contienen en su interior variables y funciones.
 
 A partir de este punto trabajamos con codigo.
 
-Estos archivos contienen las especificaciones de diferentes funcionalidades que, al poder
-incluirlas en el código, permitirá ahorrar gran cantidad de desarrollo y tiempo.
+Estos archivos contienen las especificaciones de diferentes funcionalidades que, al poder incluirlas en el código, permitirá ahorrar gran cantidad de desarrollo y tiempo.
 
 Nosotros en esta materia vamos a trabajar con framework. Esto es un framework. lo que tenemos aguas arribas, al fin y al cabo el framework esta impuesto en los entornos de compilacion. En java si hago Object.equals estamos re utilizando un framework de lo que es el entorno de compilacion.
 
@@ -443,3 +438,54 @@ TAREA TAREA TAREA
 
 - tener archivos que menciono el profe (ver grabaciones)
 -
+
+
+old code (do not delete):
+
+
+int main(int argc, char *argv[]){
+
+    int inNumero =0;
+    int *inDinNumero;
+    char *szDin;
+    int numeroAleatorio;
+    int i;
+
+    inDinNumero = (int *) malloc(sizeof( int )*1);
+    szDin = (char *) malloc(sizeof( char )*(30+1));
+
+
+    printf("\n El nombre del programa es: %s", argv[0]);
+    if(argc == 2 ){
+        inNumero = atoi(argv[1]);
+    }
+
+    /*----------*/
+    szDin[0]='F';
+    szDin[1]='R';
+    strcpy(&szDin[2],"pepe");
+
+    printf("\n Muestro string Dinamico: %s - %02x \n", szDin, &szDin);
+    printf("\n Entero estatico: %d - %02x,\n", inNumero, &inNumero);
+
+    voMostrar(&inNumero);
+
+    *inDinNumero = 10;
+
+    printf("\n Entero Din: %d - %d - %02x", inDinNumero, *inDinNumero, &inDinNumero);
+
+    *inDinNumero = 66;
+
+    for(i = 0; i<12; i++){
+        numeroAleatorio = inNumeroAleatorio(1,10);
+        printf("\n El numero aleatorio obtenido es: %d\n", numeroAleatorio);
+        sleep(1);
+    }
+
+    /* Siempre liberar memoria */
+    free(inDinNumero);
+    free(szDin);
+
+    return 0;
+}
+

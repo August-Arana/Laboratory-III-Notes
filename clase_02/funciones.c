@@ -4,7 +4,6 @@
 #include "funciones.h"
 
 void voMostrar(int *num){
-
     printf("\nvoMostrar\n");
     *num = 55; 
     printf("\nMuestro numero que es valor de la direcion %d", num);
