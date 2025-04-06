@@ -2,8 +2,8 @@
 #define _ARCHIVOS_H
 
 int inAbrirArchivo(char *, char *);
-int inLeerArchivo(char *, void *);
-int inEscribirArchivo(char *, int *);
+int inLeerArchivo(char *, char *);
+int inEscribirArchivo(char *, char *);
 int inCerrarArchivo();
 
 #endif

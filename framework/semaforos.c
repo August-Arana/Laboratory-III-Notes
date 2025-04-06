@@ -6,7 +6,7 @@
 
 int creo_semaforo(){
 
-    key_t clave = creo_clave(33);
+    key_t clave = creo_clave();
     int id_semaforo = semget(clave, 1, 0600|IPC_CREAT);
 
     if(id_semaforo == -1){

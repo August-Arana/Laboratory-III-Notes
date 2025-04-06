@@ -6,6 +6,7 @@ FILE *fp;
 
 int inAbrirArchivo(char *szNombre, char *mod){
     fp = fopen(szNombre, mod);
+
     if(fp == NULL){
         printf("\n No se puede abrir el archivo!\n");
         return 1;
@@ -13,7 +14,7 @@ int inAbrirArchivo(char *szNombre, char *mod){
     return 0;
 }
 
-int inLeerArchivo(char *formato, void *valor){
+int inLeerArchivo(char *formato, char *valor){
     
     if(fp == NULL){
         printf("\n No existe el archivo o no se ha abierto!\n");
@@ -27,13 +28,13 @@ int inLeerArchivo(char *formato, void *valor){
     return 0;
 }
 
-int inEscribirArchivo( char *formato, int *valor){
+int inEscribirArchivo( char *formato, char *valor){
     
     if(fp == NULL){
         printf("\n No existe el archivo o no se ha abierto!\n");
         return 1;
     }else{
-        fprintf(fp, formato,*valor); /*valor va con * porque no es de tipo void*/
+        fprintf(fp, formato,valor); /*valor va con * porque no es de tipo void*/
 
     }
     return 0;

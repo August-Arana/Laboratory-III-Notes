@@ -2,16 +2,17 @@
 CC = gcc
 CFLAGS = -Wall -pedantic-errors -std=gnu89 -O3
 HEADER = -I./
-MISCP = funciones.c global.c productor_con_semaforo.c archivos.c clave.c semaforos.c
-MISCC = funciones.c global.c consumidor_con_semaforo.c archivos.c clave.c semaforos.c
+MISC = funciones.c global.c archivos.c clave.c semaforos.c
 
 # El orden de los factores no altera el producto
-all: clean programa
 
-# OJO TENDRIAS QUE HABER USADO DOS REGLAS!!!!
-programa:
-	$(CC) -o consumido $(CFLAGS) $(HEADER) $(MISCC) -pthread
-	$(CC) -o productor $(CFLAGS) $(HEADER) $(MISCP) -pthread
+all: clean programa1 programa2
+
+programa2:
+	$(CC) -o consumidor $(CFLAGS) $(HEADER) $(MISC) 02-semaforo_consumidor.c -pthread
+
+programa1:
+	$(CC) -o productor $(CFLAGS) $(HEADER) $(MISC) 01-semaforo_productor.c -pthread
 
 clean:
-	rm -f *.o productor consumido
+	rm -f *.o productor consumidor
