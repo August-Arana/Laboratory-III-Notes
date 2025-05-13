@@ -1,6 +1,0 @@
-#ifndef _GLOBAL
-#define _GLOBAL
-
-extern pthread_mutex_t mutex;
-
-#endif

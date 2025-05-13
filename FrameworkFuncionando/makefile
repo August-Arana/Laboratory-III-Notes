@@ -9,10 +9,10 @@ MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c
 all: clean programa1 programa2
 
 programa2:
-	$(CC) -o consumidor $(CFLAGS) $(HEADER) $(MISC) 02-consumidor.c -pthread
+	$(CC) -o consumidor $(CFLAGS) $(HEADER) $(MISC) 02-consumidor2.c -pthread
 
 programa1:
-	$(CC) -o productor $(CFLAGS) $(HEADER) $(MISC) 01-productor.c -pthread
+	$(CC) -o productor $(CFLAGS) $(HEADER) $(MISC) 01-productor2.c -pthread
 
 clean:
 	rm -f *.o productor consumidor

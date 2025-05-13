@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -Wall -pedantic-errors -std=gnu89 -O3
 HEADER = -I./
-MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c
+MISC = funciones.c global.c archivos.c clave.c semaforos.c
 
 # El orden de los factores no altera el producto
 

@@ -5,10 +5,14 @@
 #define CLAVEBASE2 34
 #define ROJO 0
 #define VERDE 1
-#define LARGO 100
-#define CANTIDAD_PARTIDA 10
-#define INTERVALO_PRODUCTO 500
-#define INTERVALO_PARTIDA 1000
+#define TAMANO 30
+
+typedef struct menu {
+    int tipo;
+    int postre;
+    int precioTotal;
+    char sistema[1+1];
+}men;
 
 typedef struct dato{
     int numero;
@@ -17,7 +21,6 @@ typedef struct dato{
 
 typedef struct necesaryMemory {
     int bandera;
-    dat misDatos[10];
+    struct dato misDatos[10];
 }
-
 #endif
