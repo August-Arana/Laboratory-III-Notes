@@ -16,8 +16,6 @@ int main(int argc, char *argv[]) {
   memoria = (int *)creo_memoria(1, &id_memoria1, CLAVEBASE);
   memoria2 = (dat *)creo_memoria(sizeof(dat) * 10, &id_memoria2, CLAVEBASE2);
 
-  memoria[0] = 1;
-
   while (1) {
     printf("Escribo memoria 2\n");
     for (i = 0; i < 10; i++) {
@@ -27,7 +25,10 @@ int main(int argc, char *argv[]) {
       printf("Escrito %d %c\n", memoria2[i].numero, memoria2[i].letra);
       sleep(1);
     }
-    sleep(10);
+    memoria[0] = 1;
+    while (memoria[0] != 0) {
+      sleep(15);
+    }
   }
 
   shmdt((char *)memoria);
