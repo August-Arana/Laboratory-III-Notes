@@ -1,9 +1,9 @@
-#include "clave.h"
-#include "define.h"
+#include <unistd.h>
+#include <sys/shm.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/shm.h>
-#include <unistd.h>
+#include "clave.h"
+#include "define.h"
 
 void *creo_memoria(int size, int *r_id_memoria, int clave_base) {
   void *ptr_memoria;

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "string.h"
+#include <string.h>
 #include "semaforos.h"
 #include "archivos.h"
 #include "funciones.h"
@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     char cadena[TAMANO+1];
     men menu;
 
-	id_semaforo =  creo_semaforo();
+	id_semaforo =  creo_semaforo(CLAVEBASE);
 	inicia_semaforo(id_semaforo, VERDE);
 
 	while(1)

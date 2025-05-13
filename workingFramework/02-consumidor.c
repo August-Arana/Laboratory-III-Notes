@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     printf("------------------");
 
 
-	id_semaforo = creo_semaforo();
+	id_semaforo = creo_semaforo(CLAVEBASE);
 
 
 	while(1)

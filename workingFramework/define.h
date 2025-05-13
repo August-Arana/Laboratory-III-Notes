@@ -19,8 +19,8 @@ typedef struct dato{
     char letra;
 }dat;
 
-typedef struct necesaryMemory {
+typedef struct memoriaParaUsar {
     int bandera;
     struct dato misDatos[10];
-}
+}usar;
 #endif

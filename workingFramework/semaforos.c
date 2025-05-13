@@ -4,9 +4,9 @@
 #include "semaforos.h"
 #include "clave.h"
 
-int creo_semaforo(){
+int creo_semaforo(int claveBase){
 
-    key_t clave = creo_clave();
+    key_t clave = creo_clave(claveBase);
     int id_semaforo = semget(clave, 1, 0600|IPC_CREAT);
 
     if(id_semaforo == -1){
