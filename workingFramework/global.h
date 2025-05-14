@@ -6,8 +6,7 @@ Fijate que en global.h haces, lo que decias antes, de exponer las variables que 
 */
 extern char chValGlob;
 extern int inNumGlob;
-extern int ROJO;
-extern int VERDE;
 extern int CLAVE_BASE;
+extern int global_counter;
 
 #endif

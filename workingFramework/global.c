@@ -3,8 +3,7 @@
 
 char chValGlob;
 int inNumGlob;
-int ROJO;
-int VERDE;
 int CLAVE_BASE;
+int global_counter = 0;
 
 /* Nunca inicializo valores globales en estos archivos */

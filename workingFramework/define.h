@@ -6,6 +6,7 @@
 #define ROJO 0
 #define VERDE 1
 #define TAMANO 30
+#define ITERACIONES 5
 
 typedef struct menu {
     int tipo;

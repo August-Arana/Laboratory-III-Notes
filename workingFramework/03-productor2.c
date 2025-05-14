@@ -1,7 +1,8 @@
 #include "define.h"
+#include "funciones.h"
+#include "global.h"
 #include "memoria.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/shm.h>
 #include <unistd.h>
 
@@ -14,17 +15,19 @@ int main(int argc, char *argv[]) {
   dat *memoria2 = NULL;
 
   memoria = (int *)creo_memoria(1, &id_memoria1, CLAVEBASE);
-  memoria2 = (dat *)creo_memoria(sizeof(dat) * 10, &id_memoria2, CLAVEBASE2);
+  memoria2 = (dat *)creo_memoria(sizeof(dat) * ITERACIONES , &id_memoria2, CLAVEBASE2);
 
   while (1) {
     printf("Escribo memoria 2\n");
-    for (i = 0; i < 10; i++) {
-      aleatorio = rand() % (20 - 7) + 7;
+    for (i = 0; i < ITERACIONES; i++) {
+      aleatorio = inNumeroAleatorio(7, 20);
       memoria2[i].numero = aleatorio;
       memoria2[i].letra = 0x41 + aleatorio;
       printf("Escrito %d %c\n", memoria2[i].numero, memoria2[i].letra);
       sleep(1);
     }
+    global_counter++;
+    printf("contador global: %d \n", global_counter);
     memoria[0] = 1;
     while (memoria[0] != 0) {
       sleep(15);

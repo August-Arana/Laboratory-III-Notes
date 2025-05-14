@@ -1,5 +1,6 @@
 #include "define.h"
 #include "memoria.h"
+#include "global.h"
 #include <stdio.h>
 #include <sys/shm.h>
 #include <unistd.h>
@@ -12,19 +13,21 @@ int main(int argc, char *argv[]) {
   dat *memoria2 = NULL;
 
   memoria = (int *)creo_memoria(1, &id_memoria1, CLAVEBASE);
-  memoria2 = (dat *)creo_memoria(sizeof(dat) * 10, &id_memoria2, CLAVEBASE2);
+  memoria2 = (dat *)creo_memoria(sizeof(dat) * ITERACIONES, &id_memoria2, CLAVEBASE2);
 
   while (1) {
     while (memoria[0] != 1) {
       sleep(5);
     }
     printf("Leo memoria 2\n");
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < ITERACIONES; i++) {
       printf("Leido %d %c\n", memoria2[i].numero, memoria2[i].letra);
       sleep(1);
     }
     printf("Dejo de Leer memoria 2\n");
-    memoria[0] = 0;
+    global_counter++;
+    printf("contador global: %d \n", global_counter);
+    memoria[0]=0;
     sleep(15);
   }
 
