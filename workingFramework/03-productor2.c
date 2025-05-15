@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     printf("contador global: %d \n", global_counter);
     memoria[0] = 1;
     while (memoria[0] != 0) {
-      sleep(15);
+      sleep(5);
     }
   }
 

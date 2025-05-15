@@ -24,4 +24,12 @@ typedef struct memoriaParaUsar {
     int bandera;
     struct dato misDatos[10];
 }usar;
+
+typedef struct mensaje {
+    long long_dest;
+    int int_rte;
+    int int_evento;
+    char char_mensaje[100];
+}mensaje;
+
 #endif
