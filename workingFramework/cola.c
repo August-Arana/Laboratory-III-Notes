@@ -46,7 +46,6 @@ int recibir_mensaje(int id_cola_mensajes, long rLongDest, mensaje *rMsg) {
 }
 int borrar_cola_de_mensajes(int Id_Cola_Mensajes){
 	msgctl (Id_Cola_Mensajes, IPC_RMID, (struct msqid_ds *)NULL);
-
 }
 
 int borrar_mensajes(int id_cola_mensajes)
