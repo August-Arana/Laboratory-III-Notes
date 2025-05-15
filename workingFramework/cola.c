@@ -44,3 +44,21 @@ int recibir_mensaje(int id_cola_mensajes, long rLongDest, mensaje *rMsg) {
 
   return res;
 }
+int borrar_cola_de_mensajes(int Id_Cola_Mensajes){
+	msgctl (Id_Cola_Mensajes, IPC_RMID, (struct msqid_ds *)NULL);
+
+}
+
+int borrar_mensajes(int id_cola_mensajes)
+{
+	mensaje Un_Mensaje;
+	int res;
+	do
+	{
+        /* TODO: Needs to be checked, i do not know if it will work yet */
+		res = msgrcv (id_cola_mensajes, (struct msgbuf *)&Un_Mensaje, sizeof(Un_Mensaje.int_rte)+ sizeof(Un_Mensaje.int_evento) + sizeof(Un_Mensaje.char_mensaje), 0, IPC_NOWAIT);
+
+	}while(res>0);
+	return res;
+}
+
