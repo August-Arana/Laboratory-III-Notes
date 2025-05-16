@@ -9,10 +9,10 @@ MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c
 all: clean programa1 programa2
 
 programa2:
-	$(CC) -o consumidor $(CFLAGS) $(HEADER) $(MISC) example_01.c -pthread
+	$(CC) -o banco $(CFLAGS) $(HEADER) $(MISC) elBanco.c -pthread
 
 programa1:
-	$(CC) -o productor $(CFLAGS) $(HEADER) $(MISC) example_02.c -pthread
+	$(CC) -o cajero $(CFLAGS) $(HEADER) $(MISC) elCajero.c -pthread
 
 clean:
-	rm -f *.o productor consumidor
+	rm -f *.o banco cajero

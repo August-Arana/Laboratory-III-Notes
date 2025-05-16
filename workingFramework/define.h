@@ -8,22 +8,35 @@
 #define TAMANO 30
 #define ITERACIONES 5
 
-typedef struct menu {
-    int tipo;
-    int postre;
-    int precioTotal;
-    char sistema[1+1];
-}men;
+/* para ejercicio */
+#define MSG_BANCO 11
+#define MSG_CAJERO 12
+#define EVT_MENSAJE 13
+#define INTERVALO 5
+/* para ejercicio */
 
-typedef struct dato{
-    int numero;
-    char letra;
-}dat;
+/* Por ahora lo defino sin struct */
+#define EVT_NINGUNO 0
+#define EVT_CONSULTA_SALDO 1
+#define EVT_DEPOSITO 2
+#define EVT_EXTRACCION 3
+#define EVT_RTA_SALDO 4
+#define EVT_RTA_SALDO_NOK 5
+#define EVT_RTA_DEPOSITO_OK 6
+#define EVT_RTA_DEPOSITO_NOK 7
+#define EVT_RTA_EXTRACCION_OK 8
+#define EVT_RTA_EXTRACCION_NOK 9
+#define EVT_FIN 10
+/* Por ahora lo defino sin struct */
+
+typedef struct dato {
+  int numero;
+  char letra;
+} dat;
 
 typedef struct memoriaParaUsar {
-    int bandera;
-    struct dato misDatos[10];
-}usar;
-
+  int bandera;
+  struct dato misDatos[10];
+} usar;
 
 #endif
