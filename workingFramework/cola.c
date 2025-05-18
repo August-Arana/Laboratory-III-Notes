@@ -20,46 +20,64 @@ int creo_id_cola_mensajes(int clave) {
   return id_cola_mensajes;
 }
 
-int enviar_mensaje(int id_cola_mensajes, long rLongDest, int rIntRte, int rIntEvento, char *rpCharMsg) {
+/* enviar_mensaje: id_cola, destinatario, remitente, evento, char_mensaje */
+int enviar_mensaje(int id_cola_mensajes, long rLongDest, int rIntRte,
+                   int rIntEvento, char *rpCharMsg) {
+  /* El mensaje debe ser una estructura cuyo primer campo sea un long */
   mensaje msg;
+  int size;
+  /* Se almacena dentro del dato long, el tipo de mensaje */
   msg.long_dest = rLongDest;
+
+  /* El resto de parametros son cualquier cosa que se desee enviar */
   msg.int_rte = rIntRte;
   msg.int_evento = rIntEvento;
   strcpy(msg.char_mensaje, rpCharMsg);
-  return msgsnd(id_cola_mensajes, (struct msgbuf *)&msg,
-                sizeof(msg.int_rte) + sizeof(msg.int_evento) +
-                    sizeof(msg.char_mensaje),
-                IPC_NOWAIT);
+
+  /* Fijate que es el mensaje en si el que dice el destinatario, remitente,
+   * evento y mensaje (segun el marco de trabajo que planteamos aca en la
+   * materia) */
+
+  size =
+      sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje);
+
+  return msgsnd(id_cola_mensajes, (struct msgbuf *)&msg, size, IPC_NOWAIT);
 }
 
 int recibir_mensaje(int id_cola_mensajes, long rLongDest, mensaje *rMsg) {
   mensaje msg;
   int res;
-  res = msgrcv(id_cola_mensajes, (struct msgbuf *)&msg, sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje), rLongDest, 0);
+  int size;
+
+  size =
+      sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje);
+
+  res = msgrcv(id_cola_mensajes, (struct msgbuf *)&msg, size, rLongDest, 0);
 
   rMsg->long_dest = msg.long_dest;
   rMsg->int_rte = msg.int_rte;
   rMsg->int_evento = msg.int_evento;
+
   strcpy(rMsg->char_mensaje, msg.char_mensaje);
 
   return res;
 }
 
-int borrar_cola_de_mensajes(int Id_Cola_Mensajes){
-	msgctl (Id_Cola_Mensajes, IPC_RMID, (struct msqid_ds *)NULL);
-    return 0;
+int borrar_cola_de_mensajes(int Id_Cola_Mensajes) {
+  msgctl(Id_Cola_Mensajes, IPC_RMID, (struct msqid_ds *)NULL);
+  return 0;
 }
 
-int borrar_mensajes(int id_cola_mensajes)
-{
-	mensaje Un_Mensaje;
-	int res;
-	do
-	{
-        /* TODO: Needs to be checked, i do not know if it will work yet */
-		res = msgrcv (id_cola_mensajes, (struct msgbuf *)&Un_Mensaje, sizeof(Un_Mensaje.int_rte)+ sizeof(Un_Mensaje.int_evento) + sizeof(Un_Mensaje.char_mensaje), 0, IPC_NOWAIT);
+int borrar_mensajes(int id_cola_mensajes) {
+  mensaje Un_Mensaje;
+  int res;
+  do {
+    /* TODO: Needs to be checked, i do not know if it will work yet */
+    res = msgrcv(id_cola_mensajes, (struct msgbuf *)&Un_Mensaje,
+                 sizeof(Un_Mensaje.int_rte) + sizeof(Un_Mensaje.int_evento) +
+                     sizeof(Un_Mensaje.char_mensaje),
+                 0, IPC_NOWAIT);
 
-	}while(res>0);
-	return res;
+  } while (res > 0);
+  return res;
 }
-

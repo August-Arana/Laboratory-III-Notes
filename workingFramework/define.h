@@ -7,6 +7,7 @@
 #define VERDE 1
 #define TAMANO 30
 #define ITERACIONES 5
+#define CANTIDAD_CLIENTES 100
 
 /* para ejercicio */
 #define MSG_BANCO 11
@@ -29,14 +30,9 @@
 #define EVT_FIN 10
 /* Por ahora lo defino sin struct */
 
-typedef struct dato {
-  int numero;
-  char letra;
-} dat;
-
-typedef struct memoriaParaUsar {
-  int bandera;
-  struct dato misDatos[10];
-} usar;
+typedef struct cliente {
+  int id_cliente;
+  int saldo;
+} clt;
 
 #endif

@@ -1,0 +1,17 @@
+rm -f *.o banco cajero
+gcc -o cajero -Wall -pedantic-errors -std=gnu89 -O3 -I./ funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c elCajero.c -pthread
+cola.c: In function ‘enviar_mensaje’:
+cola.c:44: warning: type-punning to incomplete type might break strict-aliasing rules
+cola.c: In function ‘recibir_mensaje’:
+cola.c:55: warning: type-punning to incomplete type might break strict-aliasing rules
+cola.c: In function ‘borrar_mensajes’:
+cola.c:76: warning: type-punning to incomplete type might break strict-aliasing rules
+gcc -o banco -Wall -pedantic-errors -std=gnu89 -O3 -I./ funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c elBanco.c -pthread
+cola.c: In function ‘enviar_mensaje’:
+cola.c:44: warning: type-punning to incomplete type might break strict-aliasing rules
+cola.c: In function ‘recibir_mensaje’:
+cola.c:55: warning: type-punning to incomplete type might break strict-aliasing rules
+cola.c: In function ‘borrar_mensajes’:
+cola.c:76: warning: type-punning to incomplete type might break strict-aliasing rules
+august@august-desktop:~/Desktop/workingFramework$ 
+
