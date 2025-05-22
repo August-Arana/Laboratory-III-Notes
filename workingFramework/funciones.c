@@ -2,7 +2,6 @@
 #include "define.h"
 #include "stdlib.h"
 #include <time.h>
-int i;
 
 int inNumeroAleatorio(int m, int n) {
   srand(time(0));
@@ -10,6 +9,7 @@ int inNumeroAleatorio(int m, int n) {
 }
 
 int obtener_saldo(clt clientes[], int id_cliente) {
+  int i;
   for (i = 0; i < CANTIDAD_CLIENTES; i++) {
     if (clientes[i].id_cliente == id_cliente) {
       return clientes[i].saldo;
@@ -17,7 +17,9 @@ int obtener_saldo(clt clientes[], int id_cliente) {
   }
   return -1;
 }
+
 int depositar(clt clientes[], int id_cliente, int monto) {
+  int i;
   for (i = 0; i < CANTIDAD_CLIENTES; i++) {
     if (clientes[i].id_cliente == id_cliente) {
       clientes[i].saldo += monto;
@@ -28,11 +30,12 @@ int depositar(clt clientes[], int id_cliente, int monto) {
 }
 
 int extraer(clt clientes[], int id_cliente, int monto) {
+  int i;
   for (i = 0; i < CANTIDAD_CLIENTES; i++) {
     if (clientes[i].id_cliente == id_cliente) {
       if (monto > 0 && clientes[i].saldo >= monto && clientes[i].saldo > 0) {
         clientes[i].saldo -= monto;
-      }else{
+      } else {
         return -1;
       }
       return clientes[i].saldo;
