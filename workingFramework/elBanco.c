@@ -4,10 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-/*  */
 
-/* ojo que este main no tiene los parametros, esta mal */
-int main() {
+int main(int argc, char *argv[]) {
   /* Declaracion de variables a utilizar */
   int id_cola_mensajes;
   mensaje msg;
