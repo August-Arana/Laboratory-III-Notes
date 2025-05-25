@@ -1,18 +1,19 @@
 # En realidad tendria que ser CC = gcc-4.1
 CC = gcc
-CFLAGS = -Wall -pedantic-errors -std=gnu89 -O3
+CFLAGS = -Wall -pedantic-errors -std=gnu89 -O3 -pthread
 HEADER = -I./
-MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c
+MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c thread.c
 
 # El orden de los factores no altera el producto
 
-all: clean programa1 programa2
+all: clean bingo
 
-programa2:
-	$(CC) -o banco $(CFLAGS) $(HEADER) $(MISC) elBanco.c -pthread
+bingo:
+	$(CC) -o bingo $(CFLAGS) $(HEADER) $(MISC) bingo_threads.c
 
-programa1:
-	$(CC) -o cajero $(CFLAGS) $(HEADER) $(MISC) elCajero.c -pthread
-
+# banco:
+# 	$(CC) -o banco $(CFLAGS) $(HEADER) $(MISC) elBanco.c
+# cajero:
+# 	$(CC) -o cajero $(CFLAGS) $(HEADER) $(MISC) elCajero.c
 clean:
-	rm -f *.o banco cajero
+	rm -f *.o bingo

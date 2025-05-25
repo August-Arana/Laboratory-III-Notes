@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   /* Declaracion de variables a utilizar */
   int id_cola_mensajes;
   int cliente_id;
@@ -34,16 +33,14 @@ int main(int argc, char *argv[])
   enviar_mensaje(id_cola_mensajes, MSG_BANCO, cliente_id, EVT_MENSAJE,
                  "Quiero Iniciar sesion");
 
-  while (msg.int_evento != EVT_FIN)
-  {
+  while (msg.int_evento != EVT_FIN) {
 
     /* -------------- RECIBIR MENSAJES -------------- */
     /* primero recibir mensaje */
     recibir_mensaje(id_cola_mensajes, cliente_id, &msg);
 
     /* luego tomar una decision de que hacer con el mensaje */
-    switch (msg.int_evento)
-    {
+    switch (msg.int_evento) {
     case EVT_MENSAJE:
       printf("\n%s\n", msg.char_mensaje);
       break;
@@ -83,8 +80,7 @@ int main(int argc, char *argv[])
 
     /* Luego, darle opciones al usuario de que desea hacer */
     /* -------------- ENVIAR MENSAJES -------------- */
-    if (msg.int_evento != EVT_FIN)
-    {
+    if (msg.int_evento != EVT_FIN) {
       printf("\n--- MENU ---\n");
       printf("1. Consultar saldo\n");
       printf("2. Depositar\n");
@@ -93,8 +89,7 @@ int main(int argc, char *argv[])
       printf("Seleccione una opción: ");
       scanf("%d", &opcion);
 
-      switch (opcion)
-      {
+      switch (opcion) {
       case 1:
         enviar_mensaje(id_cola_mensajes, MSG_BANCO, cliente_id,
                        EVT_CONSULTA_SALDO, "Quiero conocer mi saldo");

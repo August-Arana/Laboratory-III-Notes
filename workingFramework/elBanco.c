@@ -99,17 +99,18 @@ int main(int argc, char *argv[]) {
       saldo = extraer(clientes, msg.int_rte, transaccion);
 
       if (saldo != -1) {
-          sprintf(mensaje_final,
-                  "Extraccion correcta. Su saldo final es de %d pesos", saldo);
+        sprintf(mensaje_final,
+                "Extraccion correcta. Su saldo final es de %d pesos", saldo);
 
-          enviar_mensaje(id_cola_mensajes, msg.int_rte, MSG_BANCO,
-                         EVT_RTA_EXTRACCION_OK, mensaje_final);
+        enviar_mensaje(id_cola_mensajes, msg.int_rte, MSG_BANCO,
+                       EVT_RTA_EXTRACCION_OK, mensaje_final);
 
       } else {
         printf("El cliente %d no existe en la base de datos\n", msg.int_rte);
         enviar_mensaje(id_cola_mensajes, msg.int_rte, MSG_BANCO,
                        EVT_RTA_EXTRACCION_NOK,
-                       "Error en consulta de saldo, cliente no registrado o saldo insuficiente");
+                       "Error en consulta de saldo, cliente no registrado o "
+                       "saldo insuficiente");
       }
       break;
 

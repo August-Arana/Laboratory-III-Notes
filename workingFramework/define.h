@@ -7,14 +7,13 @@
 #define VERDE 1
 #define TAMANO 30
 #define ITERACIONES 5
-#define CANTIDAD_CLIENTES 100
 
-/* para ejercicio */
+/* __________ Ejercicio de banco __________ */
 #define MSG_BANCO 11
 #define MSG_CAJERO 12
 #define EVT_MENSAJE 13
 #define INTERVALO 5
-/* para ejercicio */
+#define CANTIDAD_CLIENTES 100
 
 /* Por ahora lo defino sin struct */
 #define EVT_NINGUNO 0
@@ -34,5 +33,22 @@ typedef struct cliente {
   int id_cliente;
   int saldo;
 } clt;
+
+/* __________ Ejercicio de bingo __________ */
+
+#define CANT_CARTON 		5
+#define BOLILLA_DESDE 		1
+#define BOLILLA_HASTA 		99
+#define TIEMPO_COMPRUEBA	10
+#define TIEMPO_BOLILLAS		500
+
+typedef struct tipo_jugador tjugador;
+struct tipo_jugador
+{
+	int 	nro_jugador;	
+	int*	bolillas;						
+	int  	cantidad_aciertos;
+	
+};
 
 #endif
