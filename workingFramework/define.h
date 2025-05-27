@@ -51,4 +51,20 @@ struct tipo_jugador
 	
 };
 
+/* _________ Ejercicio adivinador _________ */
+
+#define ADIVINADO_DESDE 	1
+#define ADIVINADO_HASTA 	99
+
+typedef struct tipo_adivinante
+{
+	int 	nro_jugador;	
+	int	    pensado;						
+	int*    alguien_acerto;
+    int     intento;
+    int*    intentos;
+    int*    posicion;
+    int     cantidad_intentos;
+}adiv;
+
 #endif

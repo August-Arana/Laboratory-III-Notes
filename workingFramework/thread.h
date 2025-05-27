@@ -4,6 +4,7 @@
 /* siempre despues del unlock, hacer un sleep */
 
 void *ThreadJugadores (void *);
+void *ThreadAdivinantes (void *);
 
 
 #endif

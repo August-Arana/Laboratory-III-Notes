@@ -6,14 +6,10 @@ MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c thre
 
 # El orden de los factores no altera el producto
 
-all: clean bingo
+all: clean adivinando
 
-bingo:
-	$(CC) -o bingo $(CFLAGS) $(HEADER) $(MISC) bingo_threads.c
+adivinando:
+	$(CC) -o adivinador $(CFLAGS) $(HEADER) $(MISC) pienso_un_numero.c
 
-# banco:
-# 	$(CC) -o banco $(CFLAGS) $(HEADER) $(MISC) elBanco.c
-# cajero:
-# 	$(CC) -o cajero $(CFLAGS) $(HEADER) $(MISC) elCajero.c
 clean:
-	rm -f *.o bingo
+	rm -f *.o adivinador
