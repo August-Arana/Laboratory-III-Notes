@@ -6,10 +6,12 @@ MISC = funciones.c global.c archivos.c clave.c semaforos.c memoria.c cola.c thre
 
 # El orden de los factores no altera el producto
 
-all: clean adivinando
+all: clean adivinante pensador
 
-adivinando:
-	$(CC) -o adivinador $(CFLAGS) $(HEADER) $(MISC) pienso_un_numero.c
+adivinante:
+	$(CC) -o adivinante $(CFLAGS) $(HEADER) $(MISC) pienso_un_numero_jugadores.c
 
+pensador:
+	$(CC) -o pensador $(CFLAGS) $(HEADER) $(MISC) pienso_un_numero.c
 clean:
-	rm -f *.o adivinador
+	rm -f *.o adivinante pensador

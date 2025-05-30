@@ -36,35 +36,39 @@ typedef struct cliente {
 
 /* __________ Ejercicio de bingo __________ */
 
-#define CANT_CARTON 		5
-#define BOLILLA_DESDE 		1
-#define BOLILLA_HASTA 		99
-#define TIEMPO_COMPRUEBA	10
-#define TIEMPO_BOLILLAS		500
+#define CANT_CARTON 5
+#define BOLILLA_DESDE 1
+#define BOLILLA_HASTA 99
+#define TIEMPO_COMPRUEBA 10
+#define TIEMPO_BOLILLAS 500
 
 typedef struct tipo_jugador tjugador;
-struct tipo_jugador
-{
-	int 	nro_jugador;	
-	int*	bolillas;						
-	int  	cantidad_aciertos;
-	
+struct tipo_jugador {
+  int nro_jugador;
+  int *bolillas;
+  int cantidad_aciertos;
 };
 
 /* _________ Ejercicio adivinador _________ */
 
-#define ADIVINADO_DESDE 	1
-#define ADIVINADO_HASTA 	99
+#define ADIVINADO_DESDE 1
+#define ADIVINADO_HASTA 99
+#define ADIVINADO_HASTA 99
+#define EVT_INTENTO_ADIVINAR 43
+#define EVT_NO_ADIVINASTE 999
 
-typedef struct tipo_adivinante
-{
-	int 	nro_jugador;	
-	int	    pensado;						
-	int*    alguien_acerto;
-    int     intento;
-    int*    intentos;
-    int*    posicion;
-    int     cantidad_intentos;
-}adiv;
+#define MSG_NADIE 0
+#define MSG_ADIVINADOR 1
+#define MSG_ADIVINANTE 2
+
+typedef struct tipo_adivinante {
+  int nro_jugador;
+  int *alguien_acerto;
+  int intento;
+  int *intentos;
+  int *posicion;
+  int cantidad_intentos;
+  int id_cola_mensajes;
+} adiv;
 
 #endif

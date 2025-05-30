@@ -1,10 +1,9 @@
 #include "define.h"
+#include "cola.h"
 #include "funciones.h"
 #include "global.h"
-#include "thread.h"
 #include <pthread.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
@@ -12,10 +11,13 @@ int main(int argc, char *argv[]) {
   int i, cantidad, done, alguien_acerto, pensado;
   int intentos[99] = {0};
   int posicion;
-  /* Variables de hilos */
-  pthread_attr_t atributos;
-  pthread_t *idHilo;
-  adiv *datos_thread;
+
+  /* Variables de mensajes */
+  int id_cola_mensajes;
+  mensaje msg;
+
+  id_cola_mensajes = creo_id_cola_mensajes(CLAVEBASE);
+  borrar_mensajes(id_cola_mensajes);
 
   cantidad = 1;
   done = 0;
@@ -25,29 +27,32 @@ int main(int argc, char *argv[]) {
 
   pensado = inNumeroAleatorio(ADIVINADO_DESDE, ADIVINADO_HASTA);
 
-  if (argc > 1)
-    cantidad = atoi(argv[1]);
-
-  /* Creo todo lo que necesito */
-  idHilo = (pthread_t *)malloc(sizeof(pthread_t) * cantidad);
-  pthread_attr_init(&atributos);
-  pthread_attr_setdetachstate(&atributos, PTHREAD_CREATE_JOINABLE);
-  pthread_mutex_init(&mutex, NULL);
-
-  datos_thread = (adiv *)malloc(sizeof(adiv) * cantidad);
-
-  for (i = 0; i < cantidad; i++) {
-    datos_thread[i].nro_jugador = i;
-    datos_thread[i].pensado = pensado;
-    datos_thread[i].alguien_acerto = &alguien_acerto;
-    datos_thread[i].intentos = intentos;
-    datos_thread[i].posicion = &posicion;
-    datos_thread[i].cantidad_intentos = 0;
-    pthread_create(&idHilo[i], &atributos, ThreadAdivinantes, &datos_thread[i]);
-  }
 
   while (done == 0) {
-    pthread_mutex_lock(&mutex);
+    printf("Soy el pensador, estoy esperando un mensaje\n");
+    recibir_mensaje(id_cola_mensajes, MSG_ADIVINADOR, &msg);
+    printf("Soy el pensador, recibi un mensaje:\n");
+
+    switch (msg.int_evento) {
+
+        case EVT_INTENTO_ADIVINAR:
+          printf("El jugador %d: quiere adivinar con %s\n", msg.int_rte -1, msg.char_mensaje);
+          enviar_mensaje(id_cola_mensajes, msg.int_rte,
+                         MSG_ADIVINADOR, EVT_INTENTO_ADIVINAR,
+                         "no adivinaste");
+          break;
+
+        case EVT_FIN:
+          break;
+
+        default:
+          printf("\nEvento sin definir\n");
+          break;
+    }
+
+
+
+
     if (g_control == 0) {
       /* g_control es como una turnera, segun el numero, es a quien le toca
        * jugar */
@@ -71,21 +76,11 @@ int main(int argc, char *argv[]) {
 
       } else {
         done = 1;
-        printf("\nEl jugador %d adivino\n", alguien_acerto);
-        for (i = 0; i < cantidad; i++) {
-          printf("El jugador %d jugo %d intentos\n",
-                 datos_thread[i].nro_jugador,
-                 datos_thread[i].cantidad_intentos);
-        }
       }
     }
-    pthread_mutex_unlock(&mutex);
     usleep(TIEMPO_BOLILLAS * 1000);
   };
 
-  for (i = 0; i < cantidad; i++) {
-    pthread_join(idHilo[i], NULL);
-  }
   printf("JUEGO TERMINADO\n");
   return 0;
 }
