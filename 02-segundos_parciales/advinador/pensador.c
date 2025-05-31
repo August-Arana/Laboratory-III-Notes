@@ -1,7 +1,7 @@
 #include "cola.h"
 #include "define.h"
 #include "funciones.h"
-#include "global.h"
+#include "memoria.h"
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -17,6 +17,9 @@ int main(int argc, char *argv[]) {
   /* Variables de mensajes */
   int id_cola_mensajes;
   mensaje msg;
+
+  /* Semaforo memoria */
+  semaforo_de_memoria(1);
 
   /* Asignacion de variables */
   id_cola_mensajes = creo_id_cola_mensajes(CLAVEBASE);

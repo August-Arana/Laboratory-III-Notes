@@ -1,6 +1,7 @@
-#include "define.h"
 #include "cola.h"
+#include "define.h"
 #include "global.h"
+#include "memoria.h"
 #include "thread.h"
 #include <pthread.h>
 #include <stdio.h>
@@ -8,6 +9,7 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
+
   /* Variables comunes */
   int i, cantidad, done, alguien_acerto, posicion;
   int intentos[100] = {0};
@@ -18,7 +20,11 @@ int main(int argc, char *argv[]) {
   adiv *datos_thread;
 
   /* Variables de mensajes */
-  int id_cola_mensajes; 
+  int id_cola_mensajes;
+
+
+  /* Semaforo memoria */
+  semaforo_de_memoria(0);
 
   /* Asignacion de Variables */
   cantidad = 1;
@@ -53,11 +59,11 @@ int main(int argc, char *argv[]) {
 
   while (done == 0) {
     pthread_mutex_lock(&mutex);
-      if (alguien_acerto == 0) {
+    if (alguien_acerto == 0) {
 
-      } else {
-        done = 1;
-      }
+    } else {
+      done = 1;
+    }
     pthread_mutex_unlock(&mutex);
     usleep(3 * 1000);
   };
