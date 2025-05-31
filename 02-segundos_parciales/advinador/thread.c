@@ -8,54 +8,72 @@
 /*  */
 
 void *ThreadAdivinantes(void *parametro) {
-  /* recorda que esta funcion se va a 'instanciar' la cantidad de veces que sea
-   * necesaria y, hasta donde cada una de esas instancias va a tener su copia de
-   * variables */
-  int *alguien_acerto;
-  int *posicion;
-  int *intentos;
-  int nro_jugador;
+  /* Variables comunes */
   int done = 0;
   int intento = 0;
-  int ya_intentado;
-  int j;
+
+  /* Variables de mensajes */
   int id_cola_mensajes;
   mensaje msg;
   char mensaje_final[100];
 
   /* Variables de hilos */
   adiv *datos_thread = (adiv *)parametro;
+  int *alguien_acerto;
+  int nro_jugador;
+
+  /* Asignacion de variables */
   nro_jugador = datos_thread->nro_jugador;
   alguien_acerto = datos_thread->alguien_acerto;
-  posicion = datos_thread->posicion;
-  intentos = datos_thread->intentos;
   id_cola_mensajes = datos_thread->id_cola_mensajes;
 
-  ya_intentado = 0;
-
   printf("\nSoy el jugador %d\n", nro_jugador + 1);
-/*Aca podria ir un recibir mensaje para "Iniciar el juego" */
-/* sin recibirlo, no arranca */
-/* Igual, recorda, no hay silver bullets para estos ejercicios */
+  /* enviar_mensaje: id_cola, destinatario, remitente(yo), evento, char_mensaje
+   */
+  /* recibir_mensaje:id_cola, destinatario(yo), mensaje */
+
   while (done == 0) {
     pthread_mutex_lock(&mutex);
+    /* Primero me fijo si alguien ya acerto */
+    /* Si alguien ya adivino, no me meto y no bloqueo con 'recibir mensaje' */
     if (*alguien_acerto == 0) {
 
+      /* Me invento un numero */
       intento = inNumeroAleatorio(ADIVINADO_DESDE, ADIVINADO_HASTA);
-      datos_thread->cantidad_intentos++;
-      intentos[(*posicion)] = intento;
-      (*posicion)++;
 
-      sprintf(mensaje_final, "quiero adivinar con %d", intento);
+      /* Imprimo mensaje para mostrar quien soy, lo uno todo en mensaje final */
+      printf("Soy el jugador %d quiero adivinar con %d", nro_jugador + 1, intento);
+      sprintf(mensaje_final, "Es el numero %d ?\n", intento);
 
-      printf("Jugador %d: Es el numero %d ?\n", nro_jugador + 1, intento);
+      /* Le digo al pensador que quiero adivinar */
 
-      enviar_mensaje(id_cola_mensajes, MSG_ADIVINADOR,
-                     MSG_ADIVINANTE + nro_jugador, EVT_INTENTO_ADIVINAR,
-                     mensaje_final);
+      enviar_mensaje(id_cola_mensajes, MSG_PIENSO, MSG_ADIVINANTE + nro_jugador,
+                     EVT_NUMERO, mensaje_final);
 
+      /* Veo que me responde el adivinador */
       recibir_mensaje(id_cola_mensajes, MSG_ADIVINANTE + nro_jugador, &msg);
-      printf("%s\n", msg.char_mensaje);
+
+      switch (msg.int_evento) {
+
+      case EVT_NO_ACERTO:
+        /* No acerte, sigue todo como antes */
+        printf("%s\n", msg.char_mensaje);
+        break;
+
+      case EVT_ACERTO:
+        /* Acerte! Le digo al adivinador que cierre el proceso */
+        printf("%s\n", msg.char_mensaje);
+        enviar_mensaje(id_cola_mensajes, MSG_PIENSO,
+                       MSG_ADIVINANTE + nro_jugador, EVT_FINALIZAR,
+                       mensaje_final);
+        /* Y le aviso al resto de los threads que gane */
+        *alguien_acerto = 1;
+        break;
+
+      default:
+        printf("\nEvento sin definir\n");
+        break;
+      }
 
       sleep(1);
 
@@ -69,4 +87,3 @@ void *ThreadAdivinantes(void *parametro) {
 
   pthread_exit((void *)"Listo");
 }
-
