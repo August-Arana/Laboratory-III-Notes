@@ -1,8 +1,8 @@
-#include <unistd.h>
-#include <sys/shm.h>
+#include "clave.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "clave.h"
+#include <sys/shm.h>
+#include <unistd.h>
 
 void *creo_memoria(int size, int *r_id_memoria, int clave_base) {
   void *ptr_memoria;
@@ -19,4 +19,25 @@ void *creo_memoria(int size, int *r_id_memoria, int clave_base) {
   }
   *r_id_memoria = id_memoria;
   return ptr_memoria;
+}
+
+void semaforo_de_memoria(int inicia_proceso) {
+
+  int *flag_ptr;
+  int id_flag;
+
+  flag_ptr = (int *)creo_memoria(sizeof(int), &id_flag, 7698);
+
+  if (inicia_proceso) {
+
+    flag_ptr[0] = inicia_proceso;
+
+  } else {
+
+    while (flag_ptr[0] != 1) {
+      sleep(1);
+    }
+  }
+
+  return;
 }
