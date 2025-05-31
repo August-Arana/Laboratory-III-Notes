@@ -9,8 +9,8 @@
 
 int main(int argc, char *argv[]) {
   /* Variables comunes */
-  int i, cantidad, done, alguien_acerto;
-  int intentos[99] = {0};
+  int i, cantidad, done, alguien_acerto, posicion;
+  int intentos[100] = {0};
 
   /* Variables de hilos */
   pthread_attr_t atributos;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
   cantidad = 1;
   done = 0;
   alguien_acerto = 0;
+  posicion = 0;
   id_cola_mensajes = creo_id_cola_mensajes(CLAVEBASE);
   borrar_mensajes(id_cola_mensajes);
 
@@ -44,6 +45,7 @@ int main(int argc, char *argv[]) {
     datos_thread[i].alguien_acerto = &alguien_acerto;
     datos_thread[i].intentos = intentos;
     datos_thread[i].cantidad_intentos = 0;
+    datos_thread[i].posicion = &posicion;
     datos_thread[i].id_cola_mensajes = id_cola_mensajes;
 
     pthread_create(&idHilo[i], &atributos, ThreadAdivinantes, &datos_thread[i]);
@@ -52,8 +54,6 @@ int main(int argc, char *argv[]) {
   while (done == 0) {
     pthread_mutex_lock(&mutex);
       if (alguien_acerto == 0) {
-
-        printf("\nNinguno de los jugadores acerto en esta ronda\n\n");
 
       } else {
         done = 1;
