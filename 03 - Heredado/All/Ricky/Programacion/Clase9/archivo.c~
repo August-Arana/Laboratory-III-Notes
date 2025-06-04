@@ -1,0 +1,83 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <archivo.h>
+#include <def.h>
+
+FILE *fp;
+
+
+int inAbrirArchivo(char *nombre, char *tipo){
+
+	fp = fopen(nombre,tipo);
+
+	if(fp == NULL){
+
+		printf("error al abrir un archivo");
+		return FALSE;	
+		
+	}
+
+	return TRUE;
+
+}
+
+void inCerrarArchivo(){
+
+	fclose(fp);
+
+}
+
+void inLeerArchivo(){
+
+	char buffer[100];
+	
+	while(fgets(buffer,sizeof(buffer),fp) != NULL){
+		printf("%s",buffer);
+	}
+	
+
+}
+
+void inLeerArchivoBusqueda(char *szTextoALeer){
+
+	while(!feof(fp))
+	{	
+		fscanf(fp,"%s",szTextoALeer);	
+		printf("%s\n",szTextoALeer);
+
+	}
+
+}
+
+int inLeerArchivoBusquedaPorInt(char *szTextoALeer){
+	
+	char buffer[100];
+	
+	while(!feof(fp))
+	{	
+		fscanf(fp,"%s",buffer);	
+		printf("{%s}\n",buffer);
+		if(strcmp(buffer,szTextoALeer) == 1){
+		
+			return TRUE;
+		}else{
+
+			return FALSE;		
+			
+		}
+
+	}
+
+	return FALSE;
+
+}
+
+void inEscribirArchivo(char *texto){
+
+	fprintf(fp,texto);
+	printf("archivo escrito\n");
+
+
+}
+

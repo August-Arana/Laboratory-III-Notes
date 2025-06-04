@@ -1,0 +1,7 @@
+#ifndef _DEFINICIONES_H
+#define _DEFINICIONES_H
+
+#define LARGO_MENSAJE 100
+#define INTERVALO_CHEQUEO 100
+
+#endif

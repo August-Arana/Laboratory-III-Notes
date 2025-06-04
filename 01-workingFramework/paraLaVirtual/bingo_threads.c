@@ -66,12 +66,17 @@ int main(int argc, char *argv[]) {
    */
 
   /* Memoria de heap -> compartida por todo el proceso */
+
   datos_thread = (tjugador *)malloc(sizeof(tjugador) * cantidad);
 
   for (i = 0; i < cantidad; i++) {
+
     datos_thread[i].nro_jugador = i;
     datos_thread[i].cantidad_aciertos = 0;
-    pthread_create(&idHilo[i], &atributos, ThreadJugadores, &datos_thread[i]); /* A cada proceso le doy su pedacito de memoria heap para que juegue */
+
+    pthread_create(&idHilo[i], &atributos, ThreadJugadores,
+                   &datos_thread[i]); /* A cada proceso le doy su pedacito de
+                                         memoria heap para que juegue */
   }
 
   while (done == 0) {
@@ -110,7 +115,7 @@ int main(int argc, char *argv[]) {
     }
     pthread_mutex_unlock(&mutex);
     usleep(TIEMPO_BOLILLAS * 1000);
-  };
+  }
 
   for (i = 0; i < cantidad; i++) {
     pthread_join(idHilo[i], NULL);

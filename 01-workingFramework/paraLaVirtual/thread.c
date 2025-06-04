@@ -10,6 +10,7 @@ void *ThreadAdivinantes(void *parametro) {
   /* recorda que esta funcion se va a 'instanciar' la cantidad de veces que sea
    * necesaria y, hasta donde cada una de esas instancias va a tener su copia de
    * variables */
+
   int *alguien_acerto;
   int *posicion;
   int *intentos;
@@ -59,6 +60,7 @@ void *ThreadAdivinantes(void *parametro) {
         datos_thread->cantidad_intentos++;
         intentos[(*posicion)] = intento;
         (*posicion)++;
+
         printf("Jugador %d: Es el numero %d ?\n", nro_jugador + 1, intento);
 
         if (intento == pensado) {
@@ -94,7 +96,6 @@ void *ThreadJugadores(void *parametro) {
   /* Variables de hilos */
   tjugador *datos_thread = (tjugador *)parametro;
   nro_jugador = datos_thread->nro_jugador;
-  bolillas = datos_thread->bolillas;
 
   encontrado = 0;
   done = 0;
@@ -106,13 +107,15 @@ void *ThreadJugadores(void *parametro) {
     /* En esta seccion se CREA el carton del jugador */
     encontrado = 0;
     while (encontrado == 0) {
-      bolilla_local = rand() % (BOLILLA_HASTA + 1 - BOLILLA_DESDE) + BOLILLA_DESDE;
+      bolilla_local =
+          rand() % (BOLILLA_HASTA + 1 - BOLILLA_DESDE) + BOLILLA_DESDE;
       encontrado = 1;
       for (j = 0; j < CANT_CARTON; j++) {
         if (bolilla_local == carton[j])
           encontrado = 0;
       }
     }
+    
     /* El nombre de las variables no es el mejor, aunque, es codigo reciclado */
     /* Pero el tema es que aca se esta usando 'bolilla' como variable de
      * creacion del numero de carton */
@@ -126,23 +129,24 @@ void *ThreadJugadores(void *parametro) {
       if (g_carton_lleno == 0) {
         for (i = 0; i < CANT_CARTON; i++) {
 
-            /* PAra cada numero del carton */
+          /* PAra cada numero del carton */
 
-              /* recorrer cada bolilla */
-              /* Agarro un numero del carton y lo comparo con todas las bolillas
-               */
-              printf("La bollilla que salio es: %d",bolilla);
-              if (carton[i] == bolilla && carton[i] != 0) {
-                carton[i] = 0;
-                cantidad_aciertos++;
-              }
-            
-          
+          /* recorrer cada bolilla */
+          /* Agarro un numero del carton y lo comparo con todas las bolillas
+           */
+          printf("La bollilla que salio es: %d", bolilla);
+          if (carton[i] == bolilla && carton[i] != 0) {
+            carton[i] = 0;
+            cantidad_aciertos++;
+          }
         }
+
         printf("JUGADOR %d ", nro_jugador + 1);
+
         for (j = 0; j < CANT_CARTON; j++) {
           printf(" %02d ", carton[j]);
         }
+
         if (cantidad_aciertos == CANT_CARTON) {
           g_carton_lleno = nro_jugador + 1;
         }

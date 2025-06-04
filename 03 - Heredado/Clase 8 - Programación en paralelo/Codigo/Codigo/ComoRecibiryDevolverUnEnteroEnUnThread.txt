@@ -1,0 +1,42 @@
+void *funcionThread (void *parametro)
+{
+
+	int* ptr = (int*) parametro; //recibo el parametro y lo casteo como int*;	
+
+	int n= *ptr; //en n cargo el contenido apuntado por *ptr.
+
+	//Ahora puedo utilizar n en mi funcion.
+	--------------------------------
+	--------------------------------
+	--------------------------------
+	--------------------------------
+	--------------------------------
+	--------------------------------
+	--------------------------------
+	--------------------------------
+
+	*ptr = dato; //si quiero utilizar el parametro para devolver un dato generado en la funcion.
+
+	pthread_exit ((void*)0); //Esto solo puedo utilizarlo para devolver valores de status, no puedo devolver valores creados en la propia funcion thread.
+}
+	
+
+int main(..................)
+{
+	int dato=10;
+
+	----------------------------------------
+	----------------------------------------
+	----------------------------------------
+	----------------------------------------
+	----------------------------------------
+
+	pthread_create (&idHilo, &atributos, funcionPrimosThread, &dato); //envio el puntero a la variable dato, ojo es por referencia.
+
+	----------------------------------------
+	----------------------------------------
+
+	pthread_join (idHilo, NULL);
+			
+	//ahora la variable dato seguramente tendra el valor modificado en el thread.
+}

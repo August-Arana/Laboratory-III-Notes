@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
   /* Variables de mensajes */
   int id_cola_mensajes;
 
-
   /* Semaforo memoria */
   semaforo_de_memoria(0);
 

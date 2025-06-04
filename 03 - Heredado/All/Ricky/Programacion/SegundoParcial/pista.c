@@ -1,0 +1,72 @@
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <unistd.h>
+#include "time.h"
+#include "pthread.h"
+#include "clave.h"
+#include "def.h"
+#include "global.h"
+#include "memcom.h"
+#include "cola.h"
+#include "funciones.h"
+#include "threadAnimales.h"
+
+
+int main(int arg, char *argv[]){
+
+	int id_cola_mensajes, done=0, animal, i, pasos=0;
+	mensaje msg;
+	int id_memoria;
+	banderas *memoria = NULL;
+
+	memoria=(banderas*)voCreo_memoria(sizeof(banderas)*CANTIDAD, &id_memoria, CLAVE_BASE);
+	memoria[0].flag1=1;
+
+	while(memoria[0].flag2==0){
+		sleep(1);
+	}
+
+	id_cola_mensajes = inCreo_id_cola_mensajes(CLAVE_BASE);
+	inBorrar_mensajes(id_cola_mensajes);
+
+	printf("INICIA CARRERA\n");
+
+	while(done==0){
+		for(i=0;i<CANT_ANIMALES;i++){
+			inEnviar_mensaje(id_cola_mensajes, MSG_ANIMAL+i, MSG_PISTA, EVT_CORRO, "");
+		}
+		inRecibir_mensaje(id_cola_mensajes, MSG_PISTA, &msg);
+		animal=msg.int_rte-MSG_ANIMAL;
+		pasos=atoi(msg.char_mensaje);
+		switch(msg.int_evento){
+		case EVT_CORRO:
+			if(animal==0){
+				printf("\nEl conejo avanzo %d pasos\n", pasos);
+			}else if(animal==1){
+				printf("\nEl gato avanzo %d pasos\n", pasos);
+			}else if(animal==2){
+				printf("\nEl perro avanzo %d pasos\n", pasos);
+			}
+			break;
+		case EVT_FINALIZAR:
+			if(animal==0){
+				printf("\nEl conejo gano con %d pasos\n", pasos);
+			}else if(animal==1){
+				printf("\nEl gato gano con %d pasos\n", pasos);
+			}else if(animal==2){
+				printf("\nEl perro gano %d pasos\n", pasos);
+			}
+			done=1;
+			break;
+		}
+		sleep(1);
+	}
+
+	voLiberar_memoria(&memoria,id_memoria);	
+
+	return 0;
+}
