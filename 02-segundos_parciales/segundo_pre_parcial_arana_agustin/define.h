@@ -1,0 +1,29 @@
+#ifndef _DEFINE_H
+#define _DEFINE_H
+
+#define CLAVEBASE 33
+#define LONGITUD 50
+
+typedef enum
+{
+  EVT_NINGUNO,
+  EVT_CORRO,
+  EVT_FIN
+} Eventos;
+
+typedef enum
+{
+  MSG_NADIE,
+  MSG_PISTA,
+  MSG_JUGADOR
+} Destinos;
+/* Tengo que usar si o si este enum? podria haber dejado un solo jugador? */
+
+typedef struct animal
+{
+  int id_animal;
+  int id_cola_mensajes;
+  int *terminar;
+} ani;
+
+#endif

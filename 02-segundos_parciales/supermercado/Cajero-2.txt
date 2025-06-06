@@ -1,0 +1,6 @@
+Cliente2 compro e gasto 16800
+Total Caja: 16800
+
+Cliente4 compro e gasto 12950
+Total Caja: 29750
+

@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
            cantidad_productos, descripcion);
 
     cliente_activo->id = cliente_activo_id;
-    cliente_activo->producto.precio = 1000 + cantidad_productos * 250;
+    cliente_activo->producto.precio = 100 + (cantidad_productos * 250);
     strcpy(cliente_activo->producto.descripcion, descripcion);
 
     cliente_activo_id++;

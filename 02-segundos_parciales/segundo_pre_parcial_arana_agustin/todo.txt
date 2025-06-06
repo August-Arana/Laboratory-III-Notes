@@ -1,0 +1,13 @@
+toca animal
+elige un numero
+le envia a la pista la cantidad
+recibe respuesta pista
+
+
+
+toca pista
+recibe avance animal
+suma avance al total de ese animal
+responde a animal su posicion
+si le falta, sigue normal
+si termina, le envia mensaje terminar a el y todos los procesos

@@ -14,6 +14,7 @@ void *ThreadCajeros(void *parametro) {
   int *done;
   int cantidad;
   int total;
+  int total_caja;
 
   /* Variables de mensajes */
   mensaje msg;
@@ -38,6 +39,7 @@ void *ThreadCajeros(void *parametro) {
   id_memoria = datos_thread->id_memoria;
   done = datos_thread->terminar;
   cliente_activo = (clt *)creo_memoria(sizeof(clt), id_memoria, CLAVEBASE);
+  total_caja = 0;
 
   printf("\nSoy el cajero %d\n", nro_cajero + 1);
   sprintf(nombre_archivo, "Cajero-%d.txt", nro_cajero + 1);
@@ -71,14 +73,24 @@ void *ThreadCajeros(void *parametro) {
 
       cantidad = atoi(msg.char_mensaje);
       total = cliente_activo->producto.precio * cantidad;
-      sprintf(para_escribir, "%s-%d\n", cliente_activo->producto.descripcion, total);
+      total_caja += total;
+      sprintf(para_escribir, "Cliente%d compro %s gasto %d\nTotal Caja: %d\n\n",
+              cliente_activo->id, cliente_activo->producto.descripcion, total,
+              total_caja);
       inAbrirArchivo(nombre_archivo, "a");
       inEscribirArchivo("%s", para_escribir);
       inCerrarArchivo();
 
       enviar_mensaje(id_cola_mensajes, MSG_ADMIN, MSG_CAJERO + nro_cajero,
                      EVT_CLT_FIN, mensaje_final);
+      break;
 
+    case EVT_FINALIZAR:
+      printf("\nCajero %d finalizando. Total global: %d\n", nro_cajero + 1, total_caja);
+      sprintf(mensaje_final, "%d", total_caja);
+      enviar_mensaje(id_cola_mensajes, MSG_ADMIN, MSG_CAJERO + nro_cajero,
+                     EVT_FINALIZAR, mensaje_final);
+      *done = 1;
       break;
 
     default:

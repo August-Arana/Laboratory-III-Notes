@@ -1,0 +1,6 @@
+Cliente6 compro mandteca gasto 1200
+Total Caja: 1200
+
+Cliente8 compro harina gasto 6750
+Total Caja: 7950
+

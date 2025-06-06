@@ -1,1 +1,12 @@
-Leche-55250
+Cliente1 compro e gasto 50400
+Total Caja: 50400
+
+Cliente3 compro e gasto 43550
+Total Caja: 93950
+
+Cliente5 compro leche gasto 92150
+Total Caja: 186100
+
+Cliente7 compro caacao gasto 82800
+Total Caja: 268900
+
