@@ -63,6 +63,7 @@ void *ThreadMosquitos(void *parametro) {
     if (id_mosquito == 0) {
       avance = inNumeroAleatorio(1, 4);
       (*humo) += avance;
+      avance_total += avance;
       sprintf(contenido_mensaje, "%d", avance);
       enviar_mensaje(id_cola_mensajes, MSG_ESPIRAL, MSG_MOSQUITOS + id_mosquito,
                      EVT_AVANZO, contenido_mensaje);
@@ -74,6 +75,8 @@ void *ThreadMosquitos(void *parametro) {
         avance_total = 96;
         murio = 1;
         (*terminar)++;
+        printf("Mosquito %d: AAAAHHHHHH\n\n", id_mosquito + 1);
+        printf("\n\nYOU DIED\n\n");
         enviar_mensaje(id_cola_mensajes, MSG_ESPIRAL,
                        MSG_MOSQUITOS + id_mosquito, EVT_MORI,
                        contenido_mensaje);
@@ -91,7 +94,7 @@ void *ThreadMosquitos(void *parametro) {
   if (avance_total >= 96 && murio == 0) {
     enviar_mensaje(id_cola_mensajes, MSG_ESPIRAL, MSG_MOSQUITOS + id_mosquito,
                    EVT_LLEGUE, contenido_mensaje);
-        (*terminar)++;
+    (*terminar)++;
   }
 
   pthread_exit((void *)"Listo");

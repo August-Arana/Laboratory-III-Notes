@@ -8,8 +8,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   /* Variables comunes */
   int done;
   int i;
@@ -38,44 +37,45 @@ int main(int argc, char *argv[])
   srand(time(0));
 
   /* Le envio inicio a los jugadores */
-  for (i = 0; i < 3; i++)
-  {
+  for (i = 0; i < 3; i++) {
     enviar_mensaje(id_cola_mensajes, MSG_MOSQUITOS + i, MSG_ESPIRAL, EVT_INICIO,
                    contenido_mensaje);
   }
 
-  while (done != 3)
-  {
+  while (done != 3) {
 
     recibir_mensaje(id_cola_mensajes, MSG_ESPIRAL, &msg);
     usleep(300 * 1000);
 
-    switch (msg.int_evento)
-    {
+    switch (msg.int_evento) {
 
     case EVT_AVANZO:
       sscanf(msg.char_mensaje, "%d", &avance);
-      posiciones[msg.int_rte] += avance;
-      if (msg.int_rte == 0)
-      {
+      posiciones[msg.int_rte - 2] += avance;
+      if (msg.int_rte - 2 == 0) {
         strcpy(especie, "humo");
-        printf("El %s avanza %d metros este turno, va un total de %d\n\n", especie, avance, posiciones[msg.int_rte]);
-      }
-      else
-      {
+        printf("El %s avanza %d metros este turno, va un total de %d\n\n",
+               especie, avance, posiciones[msg.int_rte - 2]);
+      } else {
         strcpy(especie, "mosquito");
-        printf("El %s %d avanza %d metros este turno, va un total de %d\n\n", especie, msg.int_rte + 1, avance, posiciones[msg.int_rte]);
+        printf("El %s %d avanza %d metros este turno, va un total de %d\n\n",
+               especie, msg.int_rte - 2, avance, posiciones[msg.int_rte - 2]);
       }
 
       break;
 
     case EVT_MORI:
-      printf("El mosquito %d murio a los %d metros.\n\n", msg.int_rte + 1, posiciones[msg.int_rte]);
+      printf("El mosquito %d murio a los %d metros.\n\n", msg.int_rte - 2,
+             posiciones[msg.int_rte]);
       done++;
       break;
 
     case EVT_LLEGUE:
-      printf("El mosquito %d llego!!\n\n", msg.int_rte + 1);
+      if (msg.int_rte - 2 == 0) {
+        printf("El humo llego!!\n\n");
+      } else {
+        printf("El mosquito %d llego!!\n\n", msg.int_rte - 2);
+      }
       done++;
       break;
     }
@@ -83,6 +83,6 @@ int main(int argc, char *argv[])
     usleep(300 * 1000);
   };
 
-  printf("FIN DE BOLOS\n");
+  printf("FIN CARRERA ESPIRAL\n");
   return 0;
 }

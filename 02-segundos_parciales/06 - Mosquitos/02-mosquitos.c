@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
   /* Asignacion de Variables */
   done = 0;
   humo = 0;
+  i = 0;
   cantidad_jugadores = 3;
   id_cola_mensajes = creo_id_cola_mensajes(CLAVEBASE);
 
@@ -60,6 +61,9 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < cantidad_jugadores; i++) {
     pthread_join(idHilo[i], NULL);
   }
+
+  free(idHilo);
+  free(datos_thread);
 
   return 0;
 }
