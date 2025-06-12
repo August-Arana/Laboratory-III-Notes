@@ -1,0 +1,4 @@
+/home/rorra/laboratorio/recuperatorio_2/cmake-build-debug/CMakeFiles/jugadores.dir
+/home/rorra/laboratorio/recuperatorio_2/cmake-build-debug/CMakeFiles/panel.dir
+/home/rorra/laboratorio/recuperatorio_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/rorra/laboratorio/recuperatorio_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

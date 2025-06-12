@@ -1,11 +1,9 @@
 #include "cola.h"
 #include "define.h"
-#include "funciones.h"
 #include "memoria.h"
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sys/shm.h>
 #include <unistd.h>
 

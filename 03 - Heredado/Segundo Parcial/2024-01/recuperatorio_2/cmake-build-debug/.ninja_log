@@ -1,0 +1,19 @@
+# ninja log v6
+71	117	1720069298474919162	panel	c8fbdc9a213f6a09
+7	43	1720068812613557085	CMakeFiles/jugadores.dir/utils.c.o	3cf462b03b3e277c
+5	69	1720068812612518785	CMakeFiles/jugadores.dir/aleatorios.c.o	926d8fd07d203ebd
+2	89	1720068812608349042	CMakeFiles/jugadores.dir/claves_ipc.c.o	9926cf2a7e2f3eef
+4	68	1720069304834421202	CMakeFiles/jugadores.dir/jugadores.c.o	cb93ef2cff15963b
+3	70	1720069298406446952	CMakeFiles/panel.dir/colas.c.o	9063652b71262eaf
+0	73	1720068790148523763	CMakeFiles/panel.dir/claves_ipc.c.o	8a41121d40439665
+2	75	1720104628889861213	build.ninja	d088ad9eabb3022c
+3	71	1720069298407937491	CMakeFiles/panel.dir/cancha.c.o	f7cff0089cd0a2f5
+2	92	1720068812609958722	CMakeFiles/jugadores.dir/semaforos.c.o	3ba0803259f09377
+4	53	1720068790152489796	CMakeFiles/panel.dir/utils.c.o	7da6a6397e8dc6bf
+68	114	1720069304897278507	jugadores	4c1674c7240d8b06
+5	72	1720068790154022393	CMakeFiles/panel.dir/memoria.c.o	67b5428f4e5dd72f
+6	67	1720069304835382156	CMakeFiles/jugadores.dir/thread.c.o	f8a181b410211145
+8	93	1720068812614907638	CMakeFiles/jugadores.dir/memoria.c.o	fa3fb97f294f069c
+3	76	1720068790151478788	CMakeFiles/panel.dir/aleatorios.c.o	9d31e1f6ba5ead99
+3	67	1720069304832563045	CMakeFiles/jugadores.dir/colas.c.o	ea9bb84737561b6d
+1	75	1720068790149436854	CMakeFiles/panel.dir/semaforos.c.o	a5006c672d96563
