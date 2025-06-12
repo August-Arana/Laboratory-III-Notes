@@ -66,5 +66,9 @@ int main(int argc, char *argv[]) {
     pthread_join(idHilo[i], NULL);
   }
   printf("JUEGO TERMINADO\n");
+
+  free(idHilo);
+  free(datos_thread);
+
   return 0;
 }

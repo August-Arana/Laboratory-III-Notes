@@ -72,5 +72,8 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < cantidad_vias; i++) {
     pthread_join(idHilo[i], NULL);
   }
+
+  free(idHilo);
+  free(datos_thread);
   return 0;
 }
